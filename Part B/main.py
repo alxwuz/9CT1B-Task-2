@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pylot as plt
 
 original_df = pd.read_csv('imdb_top_1000.csv')
+updated_df = original_df.loc[:,['Series_Title', 'Released_Year', 'Certificate' morees]]
 
 welcome = """
     Welcome to my dataset sorter. Please choose the category you would like to sort (type the no. of the category, and type exit to quit).
