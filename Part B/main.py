@@ -13,7 +13,7 @@ welcome = """
      6: IMDB_Rating
      7: Overview
      8: Meta_score
-     9: Other ()
+     9: Other (view dataset, etc.)
 
      Enter your input here: """
 input(welcome)
