@@ -1,5 +1,10 @@
+import pandas as pd
+import matplotlib.pylot as plt
+
+original_df = pd.read_csv('data/big_mac_aud.csv')
+
 welcome = """
-    Welcome to my dataset sorter. Please choose the category you would like to sort (enter a number for each category, and type exit to quit).
+    Welcome to my dataset sorter. Please choose the category you would like to sort (type the no. of the category, and type exit to quit).
      1: Series_Title
      2: Released_Year
      3: Certificate
@@ -8,10 +13,11 @@ welcome = """
      6: IMDB_Rating
      7: Overview
      8: Meta_score
-     """
+
+     Enter your input here: """
 input(welcome)
-Series_Title = input()
-if Series_Title == 1:
+title = input()
+if title == 1:
     print('test')
 exit = input()
 if exit == "quit":
