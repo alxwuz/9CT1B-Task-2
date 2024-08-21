@@ -40,36 +40,34 @@ def showColumn():
        column_name = (input("""
                       
         Please choose a column from the following:
-    1: Poster_Link (most may not work due to dataframe being outdated)
-    2: Series_Title
-    3: Released_Year
-    4: Certificate
-    5: Runtime
-    6: Genre
-    7: IMDB_Rating
-    8: Overview
-    9: Meta_score
-    10: Director, Star1, Star2, Star3, Star4
-    15: No_of_votes
-    16: Gross
+    [1] Poster_Link (most may not work due to dataframe being outdated)
+    [2] Series_Title
+    [3] Released_Year
+    [4] Certificate
+    [5] Runtime
+    [6] Genre
+    [7] IMDB_Rating
+    [8] Overview
+    [9] Meta_score
+    [10] Director, Star1, Star2, Star3, Star4
+    [15] No_of_votes
+    [16] Gross
                       
     Enter column name: """))
        if column_name in df_original.columns:
         if column_name == 'Series_Title':
-            combined_df = df_original[['Series_Title']]
+            combined_df = df_original[['Series_Title']] # If they just enter Series_Title then it just shows that instead of two options.
         else:
             combined_df = df_original[['Series_Title', column_name]]
 
         print(f"Showing {column_name}:")
-        print(combined_df).head(1000)
-
-
+        print(combined_df) # Adds the Series_Title and the user input in 1 dataset.
 
 def top50Movies():
     topmovies = df_original.sort_values(by='No_of_Votes', ascending=False).head(50)
     topmovies = topmovies.drop(['Poster_Link', 'Released_Year', 'Certificate', 'Runtime', 'Genre', 'Overview', 'Meta_score', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'Gross'], axis=1)
     print("Here are the top 50 movies in the dataset:")
-    print(topmovies) # Sorts the movies in order and drops the useless one
+    print(topmovies) # Sorts the movies in order and drops the useless columns
 
 def bottom50Movies():
     bottommovies = df_original.sort_values(by='No_of_Votes', ascending=True).head(50) 
@@ -78,8 +76,8 @@ def bottom50Movies():
     print(bottommovies) # Same as top20Movies(), but for ascending order
 
 def findMoviesByYear():
-    year_to_find = int(input("Enter a year to sort the gross: "))
-    df_original['Released_Year'] = pd.to_numeric(df_original['Released_Year'], errors='coerce')
+    year_to_find = int(input("Enter a year to sort the movies: "))
+    df_original['Released_Year'] = pd.to_numeric(df_original['Released_Year'], errors='coerce') # Converts data to numeric
 
     matching_years = df_original[df_original['Released_Year'] == year_to_find]
         
@@ -93,28 +91,29 @@ def findMoviesByYear():
 
 def findMoviesByGenre():
     genre_to_find = input("""
+                          
         Please enter a genre:
-    1: Action
-    2: Adventure
-    3: Animation
-    4: Biography
-    5: Comedy
-    6: Crime
-    7: Drama
-    8: Family
-    9: Fantasy
-    10: Film-Noir
-    11: History
-    12: Horror
-    13: Music
-    14: Musical
-    15: Mystery
-    16: Romance
-    17: Sci-Fi
-    18: Sport
-    19: Thriller
-    20: War
-    21: Western
+    [1] Action
+    [2] Adventure
+    [3] Animation
+    [4] Biography
+    [5] Comedy
+    [6] Crime
+    [7] Drama
+    [8] Family
+    [9] Fantasy
+    [10] Film-Noir
+    [11] History
+    [12] Horror
+    [13] Music
+    [14] Musical
+    [15] Mystery
+    [16] Romance
+    [17] Sci-Fi
+    [18] Sport
+    [19] Thriller
+    [20] War
+    [21] Western
                                
     Enter a genre: """)
 
@@ -132,12 +131,12 @@ def findMoviesByGenre():
 
     else:
         print(f"Movies with the genre \"{genre_to_find}\":")
-        print(matching_movies_df[['Series_Title', 'Genre']]) # Prints the movies with the user's genre
+        print(matching_movies_df[['Series_Title', 'Genre']]) # Prints the movies with the user's genre and the movie name
 
 def averageRuntime():
     df_original['Runtime'] = df_original['Runtime'].str.replace(' min', '').astype(float)
     avg_runtime = df_original['Runtime'].mean()
-    print(f"The average runtime of movies is {avg_runtime} minutes.")
+    print(f"The average runtime of movies is {avg_runtime} minutes.") # Finds mean of all movies
 
 def mainUI():
     global quit
@@ -149,8 +148,8 @@ def mainUI():
     [2] -> Show the updated dataset
     [3] -> Visualise distributed IMDb ratings in a histogram
     [4] -> View a specific column
-    [5] -> View the top 50 most popular movies
-    [6] -> View the lowest 50 movies in the dataset (1000 - 950 ranking)
+    [5] -> View the top 50 most popular movies (sorted by No_of_Votes)
+    [6] -> View the 50 least popular movies in the dataset (sorted by No_of_Votes)
     [7] -> Sort by Released_Year
     [8] -> Sort by Genre
     [9] -> Find the average runtime of all the movies combined
@@ -190,13 +189,13 @@ def mainUI():
 
         elif answer == 10:
             quit = True
-            print('Thank you for using this UI. Goodbye!')
+            print('Thank you for using this UI. Goodbye! - Alex')
 
         else:
             print('Incorrect syntax. Please enter a number between 1 and 10.')
 
     except ValueError:
-        print('Invalid syntax, enter a number >:(.')
+        print('Invalid syntax, enter a number.')
 
 # Main Program
 while not quit:
