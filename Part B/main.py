@@ -34,11 +34,12 @@ def showScatter():
 
 def top20Movies():
     topmovies = df_original.sort_values(by='No_of_Votes', ascending=False).head(50)
-    topmovies = topmovies.drop(['Poster_Link', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'Gross'], axis=1)
+    topmovies = topmovies.drop(['Poster_Link', 'Released_Year', 'Certificate', 'Runtime', 'Genre', 'Overview', 'Meta_score', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'Gross'], axis=1)
     print(topmovies)
 
 def bottom20Movies():
      bottommovies = df_original.sort_values(by='No_of_Votes', ascending=True).head(50)
+     bottommovies = bottommovies.drop(['Poster_Link', 'Released_Year', 'Certificate', 'Runtime', 'Genre', 'Overview', 'Meta_score', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'Gross'], axis=1)
      print(bottommovies)
 
 
