@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 quit = False
 
 # Loading the datasets
-df_original = pd.read_csv('Part B/data/imdb_top_1000.csv')
+df_original = pd.read_csv('data/imdb_top_1000.csv')
 
 # Update and remove the unecessary columns (remove spaces from column title, so it works)
 df_original.columns = df_original.columns.str.strip() 
 
 # Update the dataframe
 df_updated = df_original.drop(['Poster_Link', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'No_of_Votes', 'Gross'], axis=1,)
-df_updated.to_csv('Part B/data/imdb_top_1000_updated.csv')
+df_updated.to_csv('data/imdb_top_1000_updated.csv')
 
 # Functions
 def showData():
